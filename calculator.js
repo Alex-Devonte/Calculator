@@ -38,7 +38,13 @@ operators.forEach((operator) => {
             if (currOperator == '') {
                 currOperator = operator.textContent;
                 updateDisplay(currOperator);
-            } 
+            } else {
+                //Evaluate the displayed equation if the user clicks another operator
+                //Assign the new operator to be used with the previous solution for the next equation
+                operate(currOperator);  
+                currOperator = operator.textContent;
+                updateDisplay(currOperator);
+            }
         }    
     });
 });
