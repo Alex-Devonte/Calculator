@@ -55,7 +55,17 @@ function clear() {
 }
 
 function backspace() {
+    //Remove 1 character from display
     display.textContent = display.textContent.slice(0, -1);
+    let currentDisplay = getDisplayContent();
+
+    //Reassign numbers correctly based on operator status after display is changed due to backspace.
+    if (currOperator == '') {
+        num1 = parseFloat(currentDisplay);
+    } else {
+        let index = currentDisplay.indexOf(currOperator);
+        num2 = parseFloat(currentDisplay.slice(index+1));
+    }
 }
 
 function add(a,b) {
