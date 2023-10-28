@@ -71,7 +71,13 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
-    return a / b;
+    if (b === 0) {
+        alert("Really? Can't divide by zero!");
+        clear();
+        return '';
+    } else {
+        return a / b;
+    }
 }
 
 function operate(operator) {
