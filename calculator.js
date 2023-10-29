@@ -140,12 +140,13 @@ function operate(operator) {
 
 //Reset display to start with solution to the previous equation
 function updateEquation(val) {
-    clear();
-    updateDisplay(val);
-
     //Will always the user the ability to enter a decimal with the second number
     decimalCount--;
-    num1 = val;
+    clear();  
+    
+    //Show and limit decimal places if number isn't an integer
+    Number.isInteger(val) ? num1 = val : num1 = parseFloat(val.toFixed(2));
+    updateDisplay(num1);
 }
 
 function updateDisplay(content) {
