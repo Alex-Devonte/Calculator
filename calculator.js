@@ -2,16 +2,35 @@ let display = document.querySelector('#display');
 let clearBtn = document.querySelector('.clear');
 let backBtn = document.querySelector('.backspace');
 let equalsBtn = document.querySelector('.equals');
+let pointBtn = document.querySelector('.decimal');
 
 let numbers = document.querySelectorAll('.number');
 let operators = document.querySelectorAll('.operator');
-let currOperator = '';
 
+let decimalCount = 0;
+let currOperator = '';
 let num1 = '';
 let num2 = '';
 
 clearBtn.addEventListener('click', clear);
 backBtn.addEventListener('click', backspace);
+
+pointBtn.addEventListener('click', function() {
+    const decimal = this.textContent;
+    const currentDisplay = getDisplayContent();
+
+    //Add decimal to display if there isn't one already
+    if (!currentDisplay.includes(decimal)) {
+        updateDisplay(decimal);
+        decimalCount++;
+    }
+    /*If there is a decimal but there's an operator selected allow the decimal to be added
+        This allows the user to add a decimal to the second number while preventing multiple points*/
+     else if (currOperator !== '' && decimalCount < 2) {
+        updateDisplay(decimal);
+        decimalCount++;
+    }
+});
 
 numbers.forEach((number)  => { 
     number.addEventListener('click', function() {
@@ -61,6 +80,7 @@ function clear() {
     num1 = '';
     num2 = '';
     currOperator = '';
+    decimalCount = 0;
 }
 
 function backspace() {
@@ -122,6 +142,9 @@ function operate(operator) {
 function updateEquation(val) {
     clear();
     updateDisplay(val);
+
+    //Will always the user the ability to enter a decimal with the second number
+    decimalCount--;
     num1 = val;
 }
 
