@@ -53,6 +53,9 @@ equalsBtn.addEventListener('click', function() {
     operate(currOperator);
 });
 
+//Ensures the display is empty on start
+clear();
+
 function clear() {
     display.textContent = '';
     num1 = '';
@@ -129,5 +132,3 @@ function updateDisplay(content) {
 function getDisplayContent() {
     return display.textContent;
 }
-
-
